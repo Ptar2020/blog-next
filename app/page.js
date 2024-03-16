@@ -10,6 +10,7 @@ export const metadata = {
 const Home = async () => {
   const res = await fetch("http://localhost:3000/api/blogs");
   const blogs = await res.json();
+  const e = "";
 
   return (
     <main>

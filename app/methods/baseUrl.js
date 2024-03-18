@@ -3,7 +3,7 @@
 let baseURL;
 
 if (process.env.NODE_ENV === "production") {
-  baseURL = "https://blog-next-wo21.onrender.com";
+  baseURL = "https://blog-next-vjds.onrender.com";
 } else {
   baseURL = "http://localhost:3000";
 }

@@ -1,4 +1,4 @@
-const GET = async (request) => {
+export async function GET(request) {
   // http://localhost:3000/api/blogs
 
   const blogs = [
@@ -22,5 +22,4 @@ const GET = async (request) => {
     },
   ];
   return new Response(JSON.stringify(blogs));
-};
-export { GET };
+}

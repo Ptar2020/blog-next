@@ -1,9 +1,10 @@
 import styles from "../page.module.css";
 import Link from "next/link";
 import { dbConnect } from "../database/database";
+import { baseURL } from "../methods/baseUrl";
 
 const BlogDetails = async ({ params }) => {
-  const res = await fetch(`http://localhost:3000/api/blogs/${params.slug}`);
+  const res = await fetch(baseURL + `/api/blogs/${params.slug}`);
   const blogData = await res.json();
   alert(params.slug);
 

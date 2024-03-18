@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
+import { baseURL } from "./methods/baseUrl";
 
 export const metadata = {
   title: "Young Blogger",
@@ -8,7 +9,7 @@ export const metadata = {
 };
 
 const Home = async () => {
-  const res = await fetch("http://localhost:3000/api/blogs");
+  const res = await fetch(baseURL + "/api/blogs");
   const blogs = await res.json();
   const e = "";
 

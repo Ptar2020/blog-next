@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { baseURL } from "./methods/baseUrl";
+import axios from "axios";
 
 export const metadata = {
   title: "Young Blogger",
@@ -9,9 +10,8 @@ export const metadata = {
 };
 
 const Home = async () => {
-  const res = await fetch(baseURL + "/api/blogs");
-  const blogs = await res.json();
-
+  const res = await axios.get(baseURL + "/api/blogs");
+  const blogs = res.data;
   return (
     <main>
       <div>

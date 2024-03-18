@@ -31,7 +31,7 @@ async function detectBaseURL(urls) {
 
 const urls = [
   "https://blog-next-wo21.onrender.com",
-  "https://blog-next-ashen.vercel.app",
+  "https://blog-next-7i455j70q-ptar.vercel.app",
 ];
 
 const baseURL = await detectBaseURL(urls);

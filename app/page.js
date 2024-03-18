@@ -20,8 +20,7 @@ export default async function Home({ request, params }) {
         <h2>Empowering Voices</h2>
         {blogs.map((blog) => (
           <div key={blog.id}>
-            <p>{blog.title}</p>
-            <p>{blog.body}</p>
+            <Link href={`/${blog.slug}`}>{blog.title}</Link>
           </div>
         ))}
       </div>

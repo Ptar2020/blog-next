@@ -18,7 +18,7 @@ const Home = async () => {
         <h2>Empowering Voices</h2>
         {blogs.map((blog) => (
           <div key={blog.id}>
-            <Link href={`/${blog.slug}`}>{blog.title}</Link>
+            <p>{blog.title}</p>
             <p>{blog.body}</p>
           </div>
         ))}

@@ -18,7 +18,6 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Image from "next/image";
 
 const Navbar = ({ auth, setAuth }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -75,13 +74,13 @@ const Navbar = ({ auth, setAuth }) => {
       <AppBar position="static" style={navbarStyle}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Image
+            {/* <Image
               className="mr-4 pr-2 logo-swing"
               width={60}
               height={50}
               src={"/logo"}
               alt="logo"
-            />
+            /> */}
             Young Blogger
           </Typography>
           {isMobileScreen ? (
@@ -247,8 +246,6 @@ const Navbar = ({ auth, setAuth }) => {
           </List>
         </Drawer>
       </Hidden>
-      {/* <Outlet />
-      <Footer /> */}
     </ThemeProvider>
   );
 };

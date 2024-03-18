@@ -11,7 +11,6 @@ export const metadata = {
 const Home = async () => {
   const res = await fetch(baseURL + "/api/blogs");
   const blogs = await res.json();
-  const e = "";
 
   return (
     <main>

@@ -26,7 +26,8 @@ export async function GET(request, { params }) {
   const { slug } = params;
 
   const blogData = blogs.find((blog) => blog.slug === slug);
-  if (!blogData) {
+  console.log("blogData ", blogData)
+  if (!blogData.id) {
     return new Response("Blog not found", { status: 404 });
   } else {
     return new Response(JSON.stringify(blogData));

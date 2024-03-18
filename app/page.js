@@ -9,9 +9,9 @@ export const metadata = {
   description: "Young Blogger Description",
 };
 
-const Home = async () => {
-  const res = await axios.get(baseURL + "/api/blogs");
-  const blogs = res.data;
+export default async function Home() {
+  const res = await fetch(baseURL + "/api/blogs");
+  const blogs = res.json();
   return (
     <main>
       <div>
@@ -25,6 +25,4 @@ const Home = async () => {
       </div>
     </main>
   );
-};
-
-export default Home;
+}

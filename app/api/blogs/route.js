@@ -1,6 +1,4 @@
 export async function GET(request) {
-  // http://localhost:3000/api/blogs
-
   const blogs = [
     {
       id: 1,

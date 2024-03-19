@@ -9,18 +9,20 @@ export const metadata = {
   description: "Young Blogger Description",
 };
 
-export default async function Home({ request, params }) {
-  const res = await axios.get(baseURL + "/api/blogs");
-  const blogs = res.data;
-  // const blogs = res.json();
+export default async function Home() {
+  const res = await fetch(baseURL + "/api/blogs", {
+    cache: "no-store",
+  });
+  const blogs = await res.json();
 
   return (
     <main>
       <div>
-        <h2>Empowering Voices</h2>
-        {blogs.map((blog) => (
+        <h2>Empowering Tomorrow's Voices</h2>
+        {blogs?.map((blog) => (
           <div key={blog.id}>
             <Link href={`/${blog.slug}`}>{blog.title}</Link>
+            <p>{blog.body}</p>
           </div>
         ))}
       </div>

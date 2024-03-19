@@ -6,30 +6,29 @@ export async function GET(request, { params }) {
       id: 1,
       title: "Title for blog ",
       slug: "slug_1",
-      body: "The body for 2nd blog post",
+      body: "The body for first blog post",
     },
     {
       id: 2,
       title: "Title for blog ",
       slug: "slug_2",
-      body: "The body for first blog post",
+      body: "The body for second blog post",
     },
     {
       id: 3,
       title: "Title for blog ",
-      slug: "slug_3",
-      body: "The body for 3rd blog post",
+      slug: "slug_376",
+      body: "The body for third blog post",
     },
   ];
 
-  // Destructure the slug from params
   const { slug } = params;
 
   const blogData = blogs.find((blog) => blog.slug === slug);
-  console.log("blogData ", blogData);
-  if (!blogData.id) {
-    return new Response("Blog not found", { status: 404 });
-  } else {
+
+  if (blogData.id) {
     return new Response(JSON.stringify(blogData));
+  } else {
+    return new Response("Blog not found", { status: 404 });
   }
 }

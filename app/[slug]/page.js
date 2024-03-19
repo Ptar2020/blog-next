@@ -2,12 +2,8 @@ import Link from "next/link";
 import { dbConnect } from "../database/database";
 import { baseURL } from "../methods/baseUrl";
 
-
-
 const BlogDetails = async ({ params }) => {
-  const res = await fetch(baseURL + `/api/blogs/${params.slug}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(baseURL + `/api/blogs/${params.slug}`);
   const blogData = await res?.json();
   console.log("blogData", blogData);
 

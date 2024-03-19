@@ -10,9 +10,7 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const res = await fetch(baseURL + "/api/blogs", {
-    cache: "no-store",
-  });
+  const res = await fetch(baseURL + "/api/blogs");
   const blogs = await res.json();
 
   return (

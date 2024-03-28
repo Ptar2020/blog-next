@@ -1,34 +1,37 @@
+// For getting blogs
+import { dbConnect } from "@/app/database/database";
+import Blog from "@/app/models/Blog";
+
 export async function GET(request, { params }) {
   // http://localhost:3000/api/blogs/:slug
+  try {
+    await dbConnect();
+    const { slug } = params;
 
-  const blogs = [
-    {
-      id: 1,
-      title: "Title for blog ",
-      slug: "slug_1",
-      body: "The body for first blog post",
-    },
-    {
-      id: 2,
-      title: "Title for blog ",
-      slug: "slug_2",
-      body: "The body for second blog post",
-    },
-    {
-      id: 3,
-      title: "Title for blog ",
-      slug: "slug_376",
-      body: "The body for third blog post",
-    },
-  ];
+    const blogData = await Blog.findOne({ slug: slug });
 
-  const { slug } = params;
-
-  const blogData = blogs.find((blog) => blog.slug === slug);
-
-  if (blogData.id) {
-    return new Response(JSON.stringify(blogData));
-  } else {
-    return new Response("Blog not found", { status: 404 });
+    if (blogData) {
+      return new Response(JSON.stringify(blogData), {
+        headers: { "Content-Type": "application/json" },
+      });
+    } else {
+      return new Response("Blog not found", { status: 404 });
+    }
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+    });
   }
+}
+
+// For adding blogs
+export async function POST(request) {
+  const formData = await request.formData();
+  const title = formData.get("title");
+  const slug = formData.get("slug");
+  const image = formData.get("image");
+  const category = formData.get("category");
+  const data = { title, slug, category, image, category };
+  return Response.json(data);
 }

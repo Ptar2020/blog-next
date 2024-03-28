@@ -1,5 +1,6 @@
 import styles from "../../page.module.css";
 import Link from "next/link";
+
 const Resources = () => {
   return (
     <div>

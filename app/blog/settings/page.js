@@ -1,13 +1,12 @@
 import Link from "next/link";
 import styles from "../../page.module.css";
-const Settings = () => {
-  return (
-    <div>
-      <div >
-        <p>Settings</p>
-        <Link href={"/"}>Home</Link>
-      </div>
-    </div>
-  );
+import SettingsPage from "./settings";
+
+export const metadata = {
+  title: "Settings",
+  description: "Young Blogger settings here.",
 };
-export default Settings;
+
+export default function Settings() {
+  return <SettingsPage />;
+}

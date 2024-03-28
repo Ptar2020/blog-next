@@ -1,23 +1,18 @@
+import { dbConnect } from "../../database/database";
+import Blog from "@/app/models/Blog";
+
 export async function GET(request) {
-  const blogs = [
-    {
-      id: 1,
-      title: "Title for blog ",
-      slug: "slug_1",
-      body: "The body for first blog post",
-    },
-    {
-      id: 2,
-      title: "Title for blog ",
-      slug: "slug_2",
-      body: "The body for second blog post",
-    },
-    {
-      id: 3,
-      title: "Title for blog ",
-      slug: "slug_3",
-      body: "The body for third blog post",
-    },
-  ];
-  return new Response(JSON.stringify(blogs));
+  try {
+    await dbConnect();
+    const blogs = await Blog.find();
+
+    return new Response(JSON.stringify(blogs), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+    });
+  }
 }

@@ -1,31 +1,28 @@
 import Link from "next/link";
-import { dbConnect } from "../database/database";
-import { baseURL } from "../methods/baseUrl";
+import { baseURL } from "../utils/baseUrl";
+import Slug from "./slug";
 
+export const metadata = {
+  title: "Blog Slug",
+  description: "Blog Description",
+};
 const BlogDetails = async ({ params }) => {
-  const res = await fetch(baseURL + `/api/blogs/${params.slug}`);
-  const blogData = await res?.json();
-  console.log("blogData", blogData);
+  const res = await fetch(baseURL + `/api/blogs/${params.slug}`, {
+    cache: "no-store",
+  });
 
-  if (!blogData.id) {
+  if (!res.ok) {
     return (
-      <div>
-        <p>404 | Blog not found.</p>
-        <Link href={"/"}>Home</Link>
+      <div className="text-danger text-center mt-4 pt-4">
+        <h4>404 | Blog Not Found.</h4>
+        <hr className="" />
+        <Link href={"/"}>Back</Link>
       </div>
     );
   }
 
-  return (
-    <div>
-      <h4>
-        {blogData?.title}
-        {" - "}
-        {blogData?.id}
-      </h4>{" "}
-      <p>{blogData?.body}</p>
-      <Link href={"/"}>Home</Link>
-    </div>
-  );
+  const blogData = await res?.json();
+
+  return <Slug {...{ blogData }} />;
 };
 export default BlogDetails;

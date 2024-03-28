@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { baseURL } from "./methods/baseUrl";
+import { baseURL } from "./utils/baseUrl";
 import axios from "axios";
 
 export const metadata = {
@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const res = await fetch(baseURL + "/api/blogs");
+  const res = await fetch(baseURL + "/api/blogs", { cache: "no-store" });
   const blogs = await res.json();
 
   return (
@@ -18,9 +18,10 @@ export default async function Home() {
       <div>
         <h2>Empowering Tomorrow's Voices</h2>
         {blogs?.map((blog) => (
-          <div key={blog.id}>
+          <div key={blog._id}>
             <Link href={`/${blog.slug}`}>{blog.title}</Link>
             <p>{blog.body}</p>
+            <hr />
           </div>
         ))}
       </div>
